@@ -112,7 +112,7 @@ const RangeSliderContainer = ({
 
   return (
     <div className="my-2">
-      <p className="mb-2 flex gap-3 items-center text-sm ">
+      <p className="lg:mb-2 md:mb-3 mb-4 flex gap-3 items-center md:text-sm text-xs">
         <span className="uppercase font-semibold">{title}</span>
         <span className="italic">( {range} )</span>
       </p>

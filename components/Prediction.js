@@ -6,12 +6,12 @@ export default function Prediction({ prediction, requestBody, setPrediction }) {
     setPrediction(null);
   };
   return (
-    <div className="max-w-[1200px] mx-auto py-5 px-7 flex flex-col gap-5  justify-center">
+    <div className="max-w-[1200px] mx-auto lg:py-5 lg:px-7 px-5 py-3 flex flex-col gap-5 justify-center">
       <div className="text-right">
         <BaseButton onClick={rePredict} title="Repredict" />
       </div>
       <div class="relative w-full shadow-md sm:rounded-lg bg-white px-4">
-        <table class="w-full text-sm text-left rtl:text-right text-gray-500 ">
+        <table class="w-full text-sm text-left  rtl:text-right text-gray-500 ">
           <tr>
             <th
               scope="col"
@@ -20,8 +20,8 @@ export default function Prediction({ prediction, requestBody, setPrediction }) {
               Prediction Table
             </th>
           </tr>
-          <tbody>
-            <tr class="bg-white flex  gap-5">
+          <tbody className="text-xs md:text-sm lg:text-base">
+            <tr class="flex flex-col lg:flex-row lg:gap-5 md:gap-3">
               <div className="w-full border-b flex justify-between">
                 <th scope="row" class="px-2 py-4 font-medium whitespace-nowrap">
                   No of Layers
@@ -35,7 +35,7 @@ export default function Prediction({ prediction, requestBody, setPrediction }) {
                 <td class="px-2 py-4 ">{prediction.num_neurons_per_layer}</td>
               </div>
             </tr>
-            <tr class="bg-white gap-5 flex">
+            <tr class="lg:gap-5 md:gap-3 flex flex-col lg:flex-row">
               <div className="w-full border-b flex justify-between">
                 <th scope="row" class="px-2 py-4 font-medium whitespace-nowrap">
                   Training Computation
@@ -59,7 +59,7 @@ export default function Prediction({ prediction, requestBody, setPrediction }) {
                 </td>
               </div>
             </tr>
-            <tr class="bg-white flex gap-5">
+            <tr class="flex lg:gap-5 md:gap-3 flex-col lg:flex-row">
               <div className="w-full border-b flex justify-between">
                 <th scope="row" class="px-2 py-4 font-medium whitespace-nowrap">
                   Eikonal Identification
@@ -83,7 +83,7 @@ export default function Prediction({ prediction, requestBody, setPrediction }) {
                 </td>
               </div>
             </tr>
-            <tr class="bg-white flex gap-5">
+            <tr class="flex lg:gap-5 md:gap-3 flex-col lg:flex-row">
               <div className="w-full border-b flex justify-between">
                 <th scope="row" class="px-2 py-4 font-medium whitespace-nowrap">
                   Mean Of Lambda
@@ -107,7 +107,7 @@ export default function Prediction({ prediction, requestBody, setPrediction }) {
                 </td>
               </div>
             </tr>
-            <tr class="bg-white flex gap-5">
+            <tr class="flex lg:gap-5 md:gap-3 ">
               <div className="w-full border-b flex justify-between">
                 <th scope="row" class="px-2 py-4 font-medium whitespace-nowrap">
                   Xmax
@@ -121,7 +121,7 @@ export default function Prediction({ prediction, requestBody, setPrediction }) {
                 <td class="px-2 py-4">{requestBody.lowerBound}</td>
               </div>
             </tr>
-            <tr class="bg-white flex gap-5">
+            <tr class="flex lg:gap-5 md:gap-3">
               <div className="w-full border-b flex justify-between">
                 <th scope="row" class="px-2 py-4 font-medium whitespace-nowrap">
                   Tmax
@@ -135,7 +135,7 @@ export default function Prediction({ prediction, requestBody, setPrediction }) {
                 <td class="px-2 py-4">{requestBody.minimumTemprature}</td>
               </div>
             </tr>
-            <tr class="bg-white flex gap-5">
+            <tr class="flex lg:gap-5 md:gap-3 ">
               <div className="w-full border-b flex justify-between">
                 <th scope="row" class="px-2 py-4 font-medium whitespace-nowrap">
                   Lambda Error
@@ -154,23 +154,23 @@ export default function Prediction({ prediction, requestBody, setPrediction }) {
           </tbody>
         </table>
       </div>
-      <div className="flex gap-3">
+      <div className="flex gap-3 flex-col lg:flex-row">
         <Image
-          className="w-1/2"
+          className="md:w-1/2 w-full rounded-lg"
           src={prediction.solution_of_burgers.image}
           width={450}
           height={600}
           alt="Burger Solution"
         />
         <Image
-          className="w-1/2"
+          className="md:w-1/2 w-full rounded-lg"
           src={prediction.solution_of_burgers.loss}
           width={450}
           height={600}
           alt="Burger Solution Loss"
         />
       </div>
-      <div className="flex justify-center">
+      <div className="flex justify-center -mt-2 md:mt-0 w-full">
         <Image
           className="rounded-lg"
           src={prediction.collocation_points}
