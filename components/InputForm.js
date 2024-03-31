@@ -92,7 +92,7 @@ export default function InputForm() {
     return (
       <div className="max-w-[1200px] mx-auto lg:py-5 lg:px-7 px-6 py-3 flex flex-col gap-5 h-[80vh] justify-center">
         <div className="flex md:justify-between justify-center mt-32 md:items-end flex-col md:flex-row">
-          <p className="font-extrabold mb-5 md:text-2xl text-xl lg:text-4xl">
+          <p className="font-extrabold mb-5 md:text-2xl text-xl lg:text-4xl uppercase">
             Let&apos;s Predict
           </p>
           <div className=" bg-white md:min-w-[230px] min-w-[190px] text-black p-3 rounded-lg text-xs md:text-sm">

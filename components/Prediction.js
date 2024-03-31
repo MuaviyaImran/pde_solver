@@ -15,7 +15,7 @@ export default function Prediction({ prediction, requestBody, setPrediction }) {
           <tr>
             <th
               scope="col"
-              class="px-2 pt-4 text-xl font-medium whitespace-nowrap"
+              class="px-2 pt-4 text-xl font-medium whitespace-nowrap uppercase"
             >
               Prediction Table
             </th>
