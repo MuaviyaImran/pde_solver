@@ -154,29 +154,29 @@ export default function Prediction({ prediction, requestBody, setPrediction }) {
           </tbody>
         </table>
       </div>
-      <div className="flex gap-3 flex-col lg:flex-row">
+      <div className="flex gap-6 flex-col lg:flex-row">
         <Image
-          className="md:w-1/2 w-full rounded-lg"
-          src={prediction.solution_of_burgers.image}
+          className="md:w-[49%] w-full rounded-lg"
+          src={prediction.collocation_points}
           width={450}
           height={600}
-          alt="Burger Solution"
+          alt="Collocation Points"
         />
         <Image
-          className="md:w-1/2 w-full rounded-lg"
+          className="md:w-[49%] w-full rounded-lg"
           src={prediction.solution_of_burgers.loss}
           width={450}
           height={600}
           alt="Burger Solution Loss"
         />
       </div>
-      <div className="flex justify-center -mt-2 md:mt-0 w-full">
+      <div className="flex justify-center mt-1 md:mt-2 w-full">
         <Image
-          className="rounded-lg"
-          src={prediction.collocation_points}
+          className=" w-full rounded-lg"
+          src={prediction.solution_of_burgers.image}
           width={450}
           height={600}
-          alt="Collocation Points"
+          alt="Burger Solution"
         />
       </div>
     </div>
