@@ -151,6 +151,14 @@ export default function Prediction({ prediction, requestBody, setPrediction }) {
                 <td class="px-2 py-4">{requestBody.function}</td>
               </div>
             </tr>
+            <tr class="flex lg:gap-5 md:gap-3 ">
+              <div className="w-1/2 border-b flex justify-between">
+                <th scope="row" class="px-2 py-4 font-medium whitespace-nowrap">
+                  PI Viscosity
+                </th>
+                <td class="px-2 py-4">{prediction.viscosity}</td>
+              </div>
+            </tr>
           </tbody>
         </table>
       </div>

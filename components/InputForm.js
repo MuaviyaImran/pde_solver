@@ -3,12 +3,13 @@ import { useEffect, useState } from "react";
 import BaseButton from "@/components/BaseButton";
 import DropDown from "@/components/DropDown";
 import Loader from "@/components/Loader";
-import Prediction from "./Prediction";
+import Prediction from "@/components/Prediction";
 export default function InputForm() {
   const [upperBound, setUpperBound] = useState(0);
   const [lowerBound, setLowerBound] = useState(0);
   const [minimumTemprature, setMinimumTemprature] = useState(0);
   const [maximumTemprature, setMaximumTemprature] = useState(0);
+  const [viscosity, setViscosity] = useState(null);
   const [layers, setLayers] = useState(5);
   const [functionEquation, setFunctionEquation] = useState("");
   const [loading, setLoading] = useState(false);
@@ -39,11 +40,12 @@ export default function InputForm() {
             tmax: maximumTemprature,
             layers: layers,
             function: f,
+            viscosity: parseFloat(viscosity),
           }),
         })
           .then((response) => response.json())
           .then((res) => {
-            if ((res.status = "ok")) {
+            if (res.status === "ok") {
               setData(res.data);
               setRequestBody({
                 upperBound: upperBound,
@@ -52,7 +54,10 @@ export default function InputForm() {
                 maximumTemprature: maximumTemprature,
                 function: f,
               });
-            } else setError(res.message);
+            } else if (res.status === "error") {
+              setLoading(false);
+              setError(res.message);
+            }
           })
           .catch((error) => {
             setLoading(false);
@@ -79,9 +84,25 @@ export default function InputForm() {
     setLowerBound(0);
     setMinimumTemprature(0);
     setLayers(5);
+    setViscosity(null);
     setMaximumTemprature(0);
     setFunctionEquation("");
   };
+  const handleViscosityChange = (e) => {
+    let value = e.target.value;
+    const regex = /^\d*\.?\d*$/;
+
+    if (value.startsWith(".") && !value.startsWith("0.")) {
+      value = "0" + value;
+    }
+    if (value === "" || regex.test(value)) {
+      setViscosity(value);
+      setError("");
+    } else {
+      setError("Please enter a valid viscosity in number.");
+    }
+  };
+
   if (loading) return <Loader />;
   else if (data)
     return (
@@ -93,8 +114,8 @@ export default function InputForm() {
     );
   else
     return (
-      <div className="max-w-[1200px] mx-auto lg:py-5 lg:px-7 px-6 py-3 flex flex-col gap-5 h-[90vh]">
-        <div className="flex md:justify-between mt-20 justify-center md:items-end flex-col md:flex-row">
+      <div className="max-w-[1200px] mx-auto lg:py-5 lg:px-7 px-6 flex flex-col gap-4 h-[90vh]">
+        <div className="flex md:justify-between justify-center md:items-end flex-col md:flex-row">
           <p className="font-extrabold mb-5 md:text-2xl text-xl lg:text-4xl uppercase">
             Let&apos;s Predict
           </p>
@@ -116,6 +137,11 @@ export default function InputForm() {
             <p className="flex justify-between">
               <strong>Layers:</strong> <span>{layers}</span>
             </p>
+            <p className="flex justify-between">
+              <strong>Viscosity:</strong>
+              <span>{viscosity ? viscosity : "Null"}</span>
+            </p>
+
             <p className="flex justify-between">
               <strong>Initial Function:</strong>
               <span className="capitalize">
@@ -192,6 +218,20 @@ export default function InputForm() {
               withLabel
               title="No of Layers"
               range="1 to 9"
+            />
+          </div>
+        </div>
+        <div>
+          <div className="flex flex-col gap-1 max-w-xs">
+            <label className="lg:mb-2 md:mb-3 mb-4 uppercase font-semibold flex gap-3 items-center md:text-sm text-xs">
+              Viscosity for PI:
+            </label>
+            <input
+              type="text"
+              className="focus:outline-none border-primary border-4 rounded-lg px-3 py-1 text-black"
+              value={viscosity ? viscosity : ""}
+              onChange={handleViscosityChange}
+              placeholder="e.g., 0.5"
             />
           </div>
         </div>

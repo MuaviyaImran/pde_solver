@@ -58,9 +58,9 @@ export default function DropDown({ title, onClick }) {
                               active
                                 ? "bg-gray-100 text-gray-900"
                                 : "text-gray-700"
-                            } flex justify-between w-full px-4 py-2 text-sm leading-5 text-left`}
+                            } flex gap-1 w-full px-4 py-2 text-sm leading-5 text-left`}
                           >
-                            {value}
+                            {value} <span className="italic"> (pi * x)</span>
                           </a>
                         )}
                       </Menu.Item>
