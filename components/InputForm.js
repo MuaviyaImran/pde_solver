@@ -9,6 +9,7 @@ export default function InputForm() {
   const [lowerBound, setLowerBound] = useState(0);
   const [minimumTemprature, setMinimumTemprature] = useState(0);
   const [maximumTemprature, setMaximumTemprature] = useState(0);
+  const [layers, setLayers] = useState(5);
   const [functionEquation, setFunctionEquation] = useState("");
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState(null); // response.data
@@ -16,7 +17,7 @@ export default function InputForm() {
   const [requestBody, setRequestBody] = useState(null);
   const predictEquation = () => {
     if (functionEquation === "") {
-      setError("Please select function from dropdown");
+      setError("Please select Inintial Condition from the dropdown");
       return;
     } else {
       setLoading(true);
@@ -36,6 +37,7 @@ export default function InputForm() {
             xmin: lowerBound,
             tmin: minimumTemprature,
             tmax: maximumTemprature,
+            layers: layers,
             function: f,
           }),
         })
@@ -76,6 +78,7 @@ export default function InputForm() {
     setUpperBound(0);
     setLowerBound(0);
     setMinimumTemprature(0);
+    setLayers(5);
     setMaximumTemprature(0);
     setFunctionEquation("");
   };
@@ -90,8 +93,8 @@ export default function InputForm() {
     );
   else
     return (
-      <div className="max-w-[1200px] mx-auto lg:py-5 lg:px-7 px-6 py-3 flex flex-col gap-5 h-[80vh] justify-center">
-        <div className="flex md:justify-between justify-center mt-32 md:items-end flex-col md:flex-row">
+      <div className="max-w-[1200px] mx-auto lg:py-5 lg:px-7 px-6 py-3 flex flex-col gap-5 h-[90vh]">
+        <div className="flex md:justify-between mt-20 justify-center md:items-end flex-col md:flex-row">
           <p className="font-extrabold mb-5 md:text-2xl text-xl lg:text-4xl uppercase">
             Let&apos;s Predict
           </p>
@@ -111,8 +114,13 @@ export default function InputForm() {
               <strong>Upper Bound:</strong> <span>{upperBound}</span>
             </p>
             <p className="flex justify-between">
-              <strong>Function:</strong>
-              <span className="capitalize">{functionEquation}</span>
+              <strong>Layers:</strong> <span>{layers}</span>
+            </p>
+            <p className="flex justify-between">
+              <strong>Initial Function:</strong>
+              <span className="capitalize">
+                {functionEquation ? functionEquation : "null"}
+              </span>
             </p>
             <div className="flex justify-center md:my-2">
               <span onClick={resetForm} className="underline cursor-pointer">
@@ -126,6 +134,7 @@ export default function InputForm() {
             <RangeSliderContainer
               min={-2}
               max={2}
+              key={lowerBound}
               onChange={setLowerBound}
               initialValue={lowerBound}
               withLabel
@@ -137,6 +146,7 @@ export default function InputForm() {
             <RangeSliderContainer
               min={-2}
               max={2}
+              key={upperBound}
               onChange={setUpperBound}
               initialValue={upperBound}
               withLabel
@@ -150,8 +160,9 @@ export default function InputForm() {
             <RangeSliderContainer
               min={-2}
               max={2}
+              key={minimumTemprature}
               onChange={setMinimumTemprature}
-              initialValue={maximumTemprature}
+              initialValue={minimumTemprature}
               withLabel
               title="Minimum Temperature"
               range="-2 to 2"
@@ -161,6 +172,7 @@ export default function InputForm() {
             <RangeSliderContainer
               min={-2}
               max={2}
+              key={maximumTemprature}
               onChange={setMaximumTemprature}
               initialValue={maximumTemprature}
               withLabel
@@ -169,8 +181,24 @@ export default function InputForm() {
             />
           </div>
         </div>
+        <div className="flex lg:gap-14 md:gap-10 gap-5 flex-col md:flex-row ">
+          <div className="w-full">
+            <RangeSliderContainer
+              min={1}
+              max={9}
+              key={layers}
+              onChange={setLayers}
+              initialValue={layers}
+              withLabel
+              title="No of Layers"
+              range="1 to 9"
+            />
+          </div>
+        </div>
         {error ? (
-          <p className="text-red-500 text-center">{error}</p>
+          <p className="text-red-500 text-center font-semibold uppercase">
+            {error}
+          </p>
         ) : (
           <p className="opacity-0">s</p>
         )}

@@ -146,7 +146,7 @@ export default function Prediction({ prediction, requestBody, setPrediction }) {
               </div>
               <div className="w-full border-b flex justify-between">
                 <th scope="row" class="px-2 py-4 font-medium whitespace-nowrap">
-                  Function
+                  Initital Condition
                 </th>
                 <td class="px-2 py-4">{requestBody.function}</td>
               </div>
