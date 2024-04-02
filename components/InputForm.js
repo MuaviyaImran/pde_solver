@@ -148,7 +148,7 @@ export default function InputForm() {
                   ? functionEquation.includes("neg")
                     ? functionEquation.replace("neg", "-").toLowerCase()
                     : functionEquation
-                  : "null"}
+                  : "Null"}
               </span>
             </p>
             <div className="flex justify-center md:my-2">
