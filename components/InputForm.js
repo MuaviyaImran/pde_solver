@@ -25,7 +25,6 @@ export default function InputForm() {
       const f = functionEquation.includes("neg")
         ? functionEquation.replace("neg", "-").toLowerCase()
         : functionEquation;
-
       try {
         fetch("http://127.0.0.1:5000/run_code", {
           method: "POST",
@@ -144,8 +143,12 @@ export default function InputForm() {
 
             <p className="flex justify-between">
               <strong>Initial Function:</strong>
-              <span className="capitalize">
-                {functionEquation ? functionEquation : "null"}
+              <span className="">
+                {functionEquation
+                  ? functionEquation.includes("neg")
+                    ? functionEquation.replace("neg", "-").toLowerCase()
+                    : functionEquation
+                  : "null"}
               </span>
             </p>
             <div className="flex justify-center md:my-2">
