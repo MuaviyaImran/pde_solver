@@ -137,18 +137,21 @@ export default function InputForm() {
               <strong>Layers:</strong> <span>{layers}</span>
             </p>
             <p className="flex justify-between">
-              <strong>Viscosity:</strong>
+              <strong>Viscosity Coefficient:</strong>
               <span>{viscosity ? viscosity : "Null"}</span>
             </p>
 
             <p className="flex justify-between">
-              <strong>Initial Function:</strong>
+              <strong>Initial Condition:</strong>
               <span className="">
                 {functionEquation
                   ? functionEquation.includes("neg")
                     ? functionEquation.replace("neg", "-").toLowerCase()
                     : functionEquation
                   : "Null"}
+                {functionEquation ? (
+                  <span className="italic ml-1">(pi * x)</span>
+                ) : null}
               </span>
             </p>
             <div className="flex justify-center md:my-2">
@@ -227,7 +230,7 @@ export default function InputForm() {
         <div>
           <div className="flex flex-col gap-1 max-w-xs">
             <label className="lg:mb-2 md:mb-3 mb-4 uppercase font-semibold flex gap-3 items-center md:text-sm text-xs">
-              Viscosity for PI:
+              Viscosity Coefficient for PI:
             </label>
             <input
               type="text"
